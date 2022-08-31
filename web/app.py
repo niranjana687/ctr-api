@@ -20,11 +20,11 @@ class Visit(Resource):
     def get(self):
         prev_num = UserNum.find({})[0]["num_of_users"]
         new_num = prev_num + 1
-        UserNum.update({}, {"$set":{"nums_of_users":new_num}})
+        UserNum.update_one({}, {"$set":{"nums_of_users":new_num}})
         return str("Hello user" + str(new_num))
 
 api.add_resource(Visit, '/visit')
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
         
